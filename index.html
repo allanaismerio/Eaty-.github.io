@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eaty - Sua fome, nossa entrega</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #4b1c1c;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    nav {
+      background: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    nav .menu {
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav .menu a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav .menu a:hover {
+      color: #e63946;
+    }
+    nav .auth-buttons button {
+      margin-left: 1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .btn-login {
+      background: white;
+      color: #e63946;
+      border: 1px solid #e63946;
+    }
+    .btn-signup {
+      background: #e63946;
+      color: white;
+    }
+
+    .hero {
+      background: #581a1a;
+      color: white;
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    .hero input {
+      margin: 0.5rem;
+      padding: 0.7rem;
+      border-radius: 5px;
+      border: none;
+      width: 250px;
+    }
+    .hero button {
+      padding: 0.7rem 1.5rem;
+      background: #e63946;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .section {
+      padding: 3rem 1rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .restaurants {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .card img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+    .card h3 {
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .card .btn {
+      margin-top: 0.5rem;
+      background: #e63946;
+      color: white;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .how-it-works {
+      background: white;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    .how-it-works h2 {
+      margin-bottom: 2rem;
+    }
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .step {
+      max-width: 250px;
+    }
+    .step h3 {
+      margin: 1rem 0 0.5rem;
+    }
+    .step p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .testimonials {
+      background-color: #f3f3f3;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .testimonials h2 {
+      margin-bottom: 2rem;
+    }
+    .testimonial-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .testimonial {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      max-width: 300px;
+    }
+    .testimonial strong {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-section {
+      background: linear-gradient(to right, #ff4e4e, #ff7373);
+      color: white;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 3rem 2rem;
+    }
+    .contact-info {
+      max-width: 400px;
+      text-align: left;
+    }
+    .contact-form {
+      background: white;
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 400px;
+      width: 100%;
+      color: #333;
+    }
+    .contact-form input, .contact-form textarea, .contact-form select {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .contact-form button {
+      width: 100%;
+      padding: 1rem;
+      background-color: #ff4e4e;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #2b2b2b;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo"><strong style="color: #e63946">+ Eaty</strong></div>
+    <div class="menu">
+      <a href="#inicio">Início</a>
+      <a href="#restaurantes">Restaurantes</a>
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <div class="auth-buttons">
+      <button class="btn-login">Entrar</button>
+      <button class="btn-signup">Cadastrar</button>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <h1>Sua fome, nossa entrega</h1>
+    <p>Descubra os melhores restaurantes da sua região e peça com apenas alguns cliques</p>
+    <div>
+      <input type="text" placeholder="Digite seu endereço">
+      <input type="text" placeholder="O que você quer comer hoje?">
+      <button>Buscar</button>
+    </div>
+  </header>
+
+  <section class="section" id="restaurantes">
+    <h2>Restaurantes em Destaque</h2>
+    <div class="restaurants">
+      <div class="card">
+        <img src="https://via.placeholder.com/80?text=🍔" alt="Burger House" />
+        <h3>Burger House</h3>
+        <p>Hambúrguer • Americana<br>Entrega: R$ 13,90</p>
+        <button class="btn">Ver Menu</button>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/80?text=🍕" alt="Pizzaria Manoel" />
+        <h3>Pizzaria Manoel</h3>
+        <p>Italiana • Pizza<br>Entrega: R$ 12,90</p>
+        <button class="btn">Ver Menu</button>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/80?text=🍜" alt="Yakissoba Yogo" />
+        <h3>Yakissoba Yogo</h3>
+        <p>Japonesa • Oriental<br>Entrega: R$ 14,50</p>
+        <button class="btn">Ver Menu</button>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/80?text=🍰" alt="Doces da Ju" />
+        <h3>Doces da Ju</h3>
+        <p>Sobremesas • Doces<br>Entrega: R$ 15,90</p>
+        <button class="btn">Ver Menu</button>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/80?text=🎂" alt="Docurinhas da Ceci" />
+        <h3>Docurinhas da Ceci</h3>
+        <p>Confeitaria • Bolos<br>Entrega: R$ 8,50</p>
+        <button class="btn">Ver Menu</button>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/80?text=🍛" alt="Sabor Caseiro" />
+        <h3>Sabor Caseiro</h3>
+        <p>Brasileira • Caseira<br>Entrega: R$ 12,50</p>
+        <button class="btn">Ver Menu</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works" id="como-funciona">
+    <h2>Como Funciona</h2>
+    <div class="steps">
+      <div class="step">
+        <img src="https://via.placeholder.com/64?text=📍" alt="Localização" />
+        <h3>Escolha sua localização</h3>
+        <p>Digite seu endereço para que o aplicativo acesse seus locais favoritos e mostre os restaurantes próximos.</p>
+      </div>
+      <div class="step">
+        <img src="https://via.placeholder.com/64?text=🛒" alt="Pedido" />
+        <h3>Escolha seu pedido</h3>
+        <p>Navegue pelos cardápios, adicione ao carrinho e personalize como quiser.</p>
+      </div>
+      <div class="step">
+        <img src="https://via.placeholder.com/64?text=🚚" alt="Entrega" />
+        <h3>Receba e aproveite</h3>
+        <p>Acompanhe seu pedido em tempo real e aproveite sua comida quentinha na porta da sua casa.</p>
+      </div>
+    </div>
+    <br />
+    <button class="btn-signup">Peça Agora</button>
+  </section>
+
+  <section class="testimonials" id="depoimentos">
+    <h2>O que nossos clientes dizem</h2>
+    <div class="testimonial-boxes">
+      <div class="testimonial">
+        <strong>Mariana Silva</strong>
+        <p>Uso o Eaty até 3x por semana! É prático, rápido e confiável. Recomendo muito!</p>
+      </div>
+      <div class="testimonial">
+        <strong>Rafael Oliveira</strong>
+        <p>O app é intuitivo e os restaurantes sempre entregam rápido. Excelente experiência.</p>
+      </div>
+      <div class="testimonial">
+        <strong>Camila Santos</strong>
+        <p>O atendimento ao cliente é ótimo! Tive um problema uma vez e foi resolvido rapidamente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contato">
+    <div class="contact-section">
+      <div class="contact-info">
+        <h3>Fale conosco</h3>
+        <p>Tem dúvidas ou sugestões? Entre em contato!</p>
+        <p><strong>Endereço:</strong> Av. Paulista, 900 - São Paulo - SP</p>
+        <p><strong>Email:</strong> contato@eaty.com.br</p>
+        <p><strong>Telefone:</strong> (11) 3456-7890</p>
+      </div>
+
+      <form class="contact-form">
+        <h3>Entre em contato</h3>
+        <input type="text" placeholder="Seu nome" required>
+        <input type="email" placeholder="Seu email" required>
+        <select required>
+          <option value="">Selecione um assunto</option>
+          <option value="duvida">Dúvida</option>
+          <option value="elogio">Elogio</option>
+          <option value="reclamacao">Reclamação</option>
+        </select>
+        <textarea placeholder="Digite sua mensagem..." rows="4" required></textarea>
+        <button type="submit">Enviar mensagem</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Eaty - Sua fome, nossa entrega.</p>
+    <p><small>Comida na sua porta com apenas alguns cliques.</small></p>
+  </footer>
+
+</body>
+</html>
